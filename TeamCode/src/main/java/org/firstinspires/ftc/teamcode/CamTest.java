@@ -43,8 +43,7 @@ public class CamTest extends OpMode {
   private DcMotor front_right;
   private DcMotor back_left;
   private DcMotor back_right;
-
-
+  int adrian = 4;
     @Override
     public void init() {
         telemetry.addData("Status", "Initialized");
@@ -80,7 +79,7 @@ public class CamTest extends OpMode {
      */
     @Override
     public void init_loop() {
-        
+
     }
 
     /*
@@ -165,6 +164,7 @@ public class CamTest extends OpMode {
         while (timer.milliseconds() < mili) {
             
             telemetry.addData("direction", dir);
+
             telemetry.update();
             
             //actually drive based on dir
@@ -211,6 +211,7 @@ public class CamTest extends OpMode {
         front_right.setPower(0);
         back_left.setPower(0);
         back_right.setPower(0);
+
     }
 
 
