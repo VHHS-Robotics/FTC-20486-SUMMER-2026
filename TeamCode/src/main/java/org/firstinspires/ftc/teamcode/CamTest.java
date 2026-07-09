@@ -80,13 +80,6 @@ public class CamTest extends OpMode {
      */
     @Override
     public void init_loop() {
-        int moveThreeSteps = 3;
-        boolean blob = false;
-        double f = Math.PI+42;
-        
-        if(blob){
-            f = 0.5;
-        }
         
     }
 
