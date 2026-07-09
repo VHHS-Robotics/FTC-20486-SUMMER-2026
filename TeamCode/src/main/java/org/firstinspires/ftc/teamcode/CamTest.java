@@ -163,6 +163,7 @@ public class CamTest extends OpMode {
         while (timer.milliseconds() < mili) {
             
             telemetry.addData("direction", dir);
+
             telemetry.update();
             
             //actually drive based on dir
