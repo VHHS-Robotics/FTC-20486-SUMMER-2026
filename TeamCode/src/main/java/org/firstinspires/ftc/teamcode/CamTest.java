@@ -79,14 +79,6 @@ public class CamTest extends OpMode {
      */
     @Override
     public void init_loop() {
-        int moveThreeSteps = 3;
-        boolean blob = false;
-        double f = Math.PI+42;
-        
-        if(blob){
-            f = 0.5;
-        }
-        
     }
 
     /*
@@ -171,6 +163,7 @@ public class CamTest extends OpMode {
         while (timer.milliseconds() < mili) {
             
             telemetry.addData("direction", dir);
+
             telemetry.update();
             
             //actually drive based on dir
@@ -217,6 +210,7 @@ public class CamTest extends OpMode {
         front_right.setPower(0);
         back_left.setPower(0);
         back_right.setPower(0);
+
     }
 
 
@@ -229,4 +223,3 @@ public class CamTest extends OpMode {
 
     }
 }
-//I am a change
