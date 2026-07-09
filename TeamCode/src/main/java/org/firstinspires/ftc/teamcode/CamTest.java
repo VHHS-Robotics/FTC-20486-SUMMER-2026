@@ -43,7 +43,7 @@ public class CamTest extends OpMode {
   private DcMotor front_right;
   private DcMotor back_left;
   private DcMotor back_right;
-  
+  public static int dill = 79;
     @Override
     public void init() {
         telemetry.addData("Status", "Initialized");
