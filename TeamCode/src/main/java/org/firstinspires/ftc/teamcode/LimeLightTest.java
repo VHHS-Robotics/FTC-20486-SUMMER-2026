@@ -1,13 +1,25 @@
 
 package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.robotcontroller.external.samples;
 
 import com.qualcomm.hardware.dfrobot.HuskyLens;
+import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.hardware.limelightvision.LLResult;
+import com.qualcomm.hardware.limelightvision.LLResultTypes;
+import com.qualcomm.hardware.limelightvision.LLStatus;
+import com.qualcomm.hardware.limelightvision.Limelight3A;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.robotcore.external.navigation.Pose3D;
+
+import java.util.List;
 /**
  * This file contains a minimal example of an iterative (Non-Linear) "OpMode". An OpMode is a
  * 'program' that runs in either the autonomous or the TeleOp period of an FTC match. The names
@@ -19,13 +31,16 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * added to the Driver Station.
  */
 @Autonomous(name = "LimeLightTest")
+
 public class LimeLightTest extends OpMode {
     /* Declare OpMode members. */
-    private HuskyLens camera;
+    private LimeLightTest camera;
     private DcMotor front_left;
     private DcMotor front_right;
     private DcMotor back_left;
     private DcMotor back_right;
+
+
 
     public enum direction {
         Left,
@@ -35,9 +50,19 @@ public class LimeLightTest extends OpMode {
         TurnL,
         TurnR
     }
+    public void runOpMode() throws InterruptedException
+    {
+        camera = hardwareMap.get(LimeLightTest.class, "limelight");
+        telemetry.setMsTransmissionInterval(11);
+        camera.pipelineSwitch(0);
+    }
 
     @Override
     public void init() {
+        camera = hardwareMap.get(LimeLightTest.class, "limelight");
+        telemetry.setMsTransmissionInterval(11);
+        camera.pipelineSwitch(0);
+
         telemetry.addData("Status", "Initialized");
 
 
@@ -55,7 +80,24 @@ public class LimeLightTest extends OpMode {
         
         telemetry.update();
     }
-    
+    public enum Pipeline{
+        APRILTAG,
+        COLOR_DETECTION,
+        NEURAL_DETECTION
+
+    }
+    private Pipeline currentPipeline = Pipeline.NEURAL_DETECTION;
+
+
+
+    private void pipelineSwitch(Pipeline newPipeline) {
+        currentPipeline = newPipeline;
+        switch(currentPipeline){
+
+        }
+
+    }
+
 
     /*
      * Code to run REPEATEDLY after the driver hits INIT, but before they hit PLAY
