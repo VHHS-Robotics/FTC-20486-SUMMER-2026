@@ -1,8 +1,6 @@
 
 package org.firstinspires.ftc.teamcode;
 package org.firstinspires.ftc.robotcontroller.external.samples;
-
-import com.qualcomm.hardware.dfrobot.HuskyLens;
 import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -59,10 +57,6 @@ public class LimeLightTest extends OpMode {
 
     @Override
     public void init() {
-        camera = hardwareMap.get(LimeLightTest.class, "limelight");
-        telemetry.setMsTransmissionInterval(11);
-        camera.pipelineSwitch(0);
-
         telemetry.addData("Status", "Initialized");
 
 
@@ -93,6 +87,8 @@ public class LimeLightTest extends OpMode {
     private void pipelineSwitch(Pipeline newPipeline) {
         currentPipeline = newPipeline;
         switch(currentPipeline){
+            case APRILTAG:
+            visionPortal.setProcessorEnabled(aprilTagProcessor, true);
 
         }
 
