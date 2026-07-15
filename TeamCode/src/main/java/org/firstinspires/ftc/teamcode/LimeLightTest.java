@@ -9,10 +9,13 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.limelightvision.LLResultTypes;
 import com.qualcomm.hardware.limelightvision.LLStatus;
+import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
 import org.firstinspires.ftc.robotcore.external.navigation.Pose3D;
+
 import java.util.List;
 /**
  * This file contains a minimal example of an iterative (Non-Linear) "OpMode". An OpMode is a
@@ -63,6 +66,11 @@ public class LimeLightTest extends OpMode {
         telemetry.setMsTransmissionInterval(11);
         camera.pipelineSwitch(0);
 
+
+        camera.start();
+
+        telemetry.addData(">", "Robot Ready.  Press Play.");
+
         telemetry.update();
     }
 
@@ -79,7 +87,6 @@ public class LimeLightTest extends OpMode {
      */
     @Override
     public void start() {
-        camera.start();
     }
 
 
