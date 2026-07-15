@@ -1,6 +1,5 @@
 
 package org.firstinspires.ftc.teamcode;
-package org.firstinspires.ftc.robotcontroller.external.samples;
 import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -10,13 +9,10 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.limelightvision.LLResultTypes;
 import com.qualcomm.hardware.limelightvision.LLStatus;
-import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
 import org.firstinspires.ftc.robotcore.external.navigation.Pose3D;
-
 import java.util.List;
 /**
  * This file contains a minimal example of an iterative (Non-Linear) "OpMode". An OpMode is a
@@ -29,16 +25,13 @@ import java.util.List;
  * added to the Driver Station.
  */
 @Autonomous(name = "LimeLightTest")
-
 public class LimeLightTest extends OpMode {
     /* Declare OpMode members. */
-    private LimeLightTest camera;
+    private Limelight3A camera;
     private DcMotor front_left;
     private DcMotor front_right;
     private DcMotor back_left;
     private DcMotor back_right;
-
-
 
     public enum direction {
         Left,
@@ -48,52 +41,30 @@ public class LimeLightTest extends OpMode {
         TurnL,
         TurnR
     }
-    public void runOpMode() throws InterruptedException
-    {
-        camera = hardwareMap.get(LimeLightTest.class, "limelight");
-        telemetry.setMsTransmissionInterval(11);
-        camera.pipelineSwitch(0);
-    }
 
     @Override
     public void init() {
         telemetry.addData("Status", "Initialized");
 
 
-        
         front_left = hardwareMap.get(DcMotor.class, "front_left");
         front_right = hardwareMap.get(DcMotor.class, "front_right");
         back_left = hardwareMap.get(DcMotor.class, "back_left");
         back_right = hardwareMap.get(DcMotor.class, "back_right");
-        
-        
+
+
         front_left.setDirection(DcMotorSimple.Direction.FORWARD);
         front_right.setDirection(DcMotorSimple.Direction.FORWARD);
         back_left.setDirection(DcMotorSimple.Direction.REVERSE);
         back_right.setDirection(DcMotorSimple.Direction.REVERSE);
-        
+
+
+        camera = hardwareMap.get(Limelight3A.class, "limelight");
+        telemetry.setMsTransmissionInterval(11);
+        camera.pipelineSwitch(0);
+
         telemetry.update();
     }
-    public enum Pipeline{
-        APRILTAG,
-        COLOR_DETECTION,
-        NEURAL_DETECTION
-
-    }
-    private Pipeline currentPipeline = Pipeline.NEURAL_DETECTION;
-
-
-
-    private void pipelineSwitch(Pipeline newPipeline) {
-        currentPipeline = newPipeline;
-        switch(currentPipeline){
-            case APRILTAG:
-            visionPortal.setProcessorEnabled(aprilTagProcessor, true);
-
-        }
-
-    }
-
 
     /*
      * Code to run REPEATEDLY after the driver hits INIT, but before they hit PLAY
@@ -108,38 +79,51 @@ public class LimeLightTest extends OpMode {
      */
     @Override
     public void start() {
+        camera.start();
     }
-     
+
 
     /*
      * Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
      */
     @Override
     public void loop() {
+        LLStatus status = camera.getStatus();
+        telemetry.addData("Name", "%s",
+                status.getName());
+        telemetry.addData("LL", "Temp: %.1fC, CPU: %.1f%%, FPS: %d",
+                status.getTemp(), status.getCpu(), (int) status.getFps());
+        telemetry.addData("Pipeline", "Index: %d, Type: %s",
+                status.getPipelineIndex(), status.getPipelineType());
 
-        //Old auto code for huskey lens
-//        if(objectID == 1){
-//            telemetry.addData("object detected",  String.valueOf(objectID));
-//        }
-//
-//        if(xCenter < 140){
-//            telemetry.addData("Move: ", "Left");
-//            drive(0.2, 0.5, direction.Left);
-//        }
-//        else if(xCenter > 180){
-//            telemetry.addData("Move: ", "Right");
-//            drive(0.2, 0.5, direction.Right);
-//        }else if(xCenter >= 140 && xCenter <= 180){
-//            telemetry.addData("Move: ", "Forward(Centered)");
-//            drive(0.3, 0.5, direction.Forward);
-//        } else{
-//            telemetry.addData("Move: ", "Turn(No object detected)");
-//            drive(0.3, 0.5, direction.TurnL);
-//            drive(0.3, 0.5, direction.TurnR);
-//
-//        }
-        //then do something
+        LLResult result = camera.getLatestResult();
+        if (result.isValid()) {
+            // Access general information
+            Pose3D botpose = result.getBotpose();
+            double captureLatency = result.getCaptureLatency();
+            double targetingLatency = result.getTargetingLatency();
+            double parseLatency = result.getParseLatency();
+            telemetry.addData("LL Latency", captureLatency + targetingLatency);
+            telemetry.addData("Parse Latency", parseLatency);
+            telemetry.addData("PythonOutput", java.util.Arrays.toString(result.getPythonOutput()));
 
+            telemetry.addData("tx", result.getTx());
+            telemetry.addData("txnc", result.getTxNC());
+            telemetry.addData("ty", result.getTy());
+            telemetry.addData("tync", result.getTyNC());
+
+            telemetry.addData("Botpose", botpose.toString());
+
+            // Access detector results
+            List<LLResultTypes.DetectorResult> detectorResults = result.getDetectorResults();
+            for (LLResultTypes.DetectorResult dr : detectorResults) {
+                telemetry.addData("Detector", "Class: %s, Area: %.2f", dr.getClassName(), dr.getTargetArea());
+            }
+        } else {
+            telemetry.addData("Limelight", "No data available");
+        }
+
+        telemetry.update();
     }
 
     /**
@@ -215,6 +199,10 @@ public class LimeLightTest extends OpMode {
      */
     @Override
     public void stop() {
-
+        camera.stop();
+        front_left.setPower(0);
+        front_right.setPower(0);
+        back_left.setPower(0);
+        back_right.setPower(0);
     }
 }
