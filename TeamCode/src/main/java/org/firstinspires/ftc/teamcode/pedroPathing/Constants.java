@@ -11,7 +11,8 @@ import com.pedropathing.paths.PathConstraints;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-public class Constants {
+public class
+Constants {
     public static FollowerConstants followerConstants = new FollowerConstants()
 
             ;
@@ -39,11 +40,11 @@ public class Constants {
             .leftRearEncoderDirection(Encoder.REVERSE)
             .rightFrontEncoderDirection(Encoder.FORWARD)
             .rightRearEncoderDirection(Encoder.FORWARD)
-            .robotWidth(/*Insert Robot Width Here-->*/0)
-            .robotLength(/*Insert Robot Length Here--> */0)
-            .forwardTicksToInches(/*Insert Result from Forward Ticks to Inches here-->*/0)
-            .strafeTicksToInches(/*Insert Result from Strafe Ticks to Inches here -->*/0)
-            .turnTicksToInches(/*Insert Result from Turn Ticks to Inches here -->*/0)
+            .robotWidth(/*Insert Robot Width Here-->*/19.25)
+            .robotLength(/*Insert Robot Length Here--> */18.75)
+            .forwardTicksToInches(/*Insert Result from Forward Ticks to Inches here-->*/-0.3)
+            .strafeTicksToInches(/*Insert Result from Strafe Ticks to Inches here -->*/-0.12)
+            .turnTicksToInches(/*Insert Result from Turn Ticks to Inches here -->*/-0.45)
             ;
     /**
      * This is where your drive follower is actually created!
