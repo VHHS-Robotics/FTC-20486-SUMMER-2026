@@ -38,7 +38,7 @@ Constants {
             .leftFrontMotorName("front_left")
             .leftFrontEncoderDirection(Encoder.REVERSE)
             .leftRearEncoderDirection(Encoder.REVERSE)
-            .rightFrontEncoderDirection(Encoder.FORWARD)
+            .rightFrontEncoderDirection(Encoder.REVERSE)
             .rightRearEncoderDirection(Encoder.FORWARD)
             .robotWidth(/*Insert Robot Width Here-->*/19.25)
             .robotLength(/*Insert Robot Length Here--> */18.75)
