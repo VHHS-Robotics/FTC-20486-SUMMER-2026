@@ -42,9 +42,9 @@ Constants {
             .rightRearEncoderDirection(Encoder.REVERSE)
             .robotWidth(/*Insert Robot Width Here-->*/19.25)
             .robotLength(/*Insert Robot Length Here--> */18.75)
-            .forwardTicksToInches(/*Insert Result from Forward Ticks to Inches here-->*/-0.3)
-            .strafeTicksToInches(/*Insert Result from Strafe Ticks to Inches here -->*/-0.12)
-            .turnTicksToInches(/*Insert Result from Turn Ticks to Inches here -->*/-0.45)
+            .forwardTicksToInches(/*Insert Result from Forward Ticks to Inches here-->*/-0.11)
+            .strafeTicksToInches(/*Insert Result from Strafe Ticks to Inches here -->*/0.024)
+            .turnTicksToInches(/*Insert Result from Turn Ticks to Inches here -->*/0.176)
             ;
     /**
      * This is where your drive follower is actually created!
