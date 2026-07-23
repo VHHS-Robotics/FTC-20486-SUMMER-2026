@@ -9,9 +9,6 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.limelightvision.LLResultTypes;
 import com.qualcomm.hardware.limelightvision.LLStatus;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose3D;
 import java.util.List;
 /**
@@ -32,6 +29,13 @@ public class LimeLightTest extends OpMode {
     private DcMotor front_right;
     private DcMotor back_left;
     private DcMotor back_right;
+    private static final double STEER_P = 0.03;
+    private final double TURN_KP = 0.02;
+    private final double SPEED = 0.5;
+
+    private double alignmentTolerance = 1.5;
+
+
 
     public enum direction {
         Left,
@@ -63,6 +67,11 @@ public class LimeLightTest extends OpMode {
         telemetry.setMsTransmissionInterval(11);
         camera.pipelineSwitch(0);
 
+
+        camera.start();
+
+        telemetry.addData(">", "Robot Ready.  Press Play.");
+
         telemetry.update();
     }
 
@@ -71,7 +80,49 @@ public class LimeLightTest extends OpMode {
      */
     @Override
     public void init_loop() {
+        LLResult result = camera.getLatestResult();
+        double xOffset = result.getTx();
+        double targetArea = result.getTa();
+        if (result != null && result.isValid()) {
+            List<LLResultTypes.DetectorResult> detectedObjects = result.getDetectorResults();
+            if (!detectedObjects.isEmpty()) {
+                LLResultTypes.DetectorResult closestTarget = null;
+                double maxArea = 0.0;
+                for (LLResultTypes.DetectorResult obj : detectedObjects) {
+                    double area = obj.getTargetArea();
+                    if (area > maxArea) {
+                        maxArea = area;
+                        closestTarget = obj;
 
+                    }
+                }
+                if (closestTarget != null) {
+                    double tx = closestTarget.getTargetXDegrees();
+                    double ta = closestTarget.getTargetArea();
+                    double turnSpeed = tx * STEER_P;
+                    if (Math.abs(tx) > 2.0) {
+                        if (turnSpeed > 0) {
+                            drive(Math.abs(turnSpeed), 1, direction.Right);
+
+                        } else {
+                            drive(Math.abs(turnSpeed), 1, direction.Left);
+                        }
+                    } else {
+                        //robot is aligned drive towards the pollen
+                        //is the target area is less tha 40% too far, then drive forward
+                        if (ta < 40.0) {
+                            drive(0.4, 1, direction.Forward);
+                        } else {
+                            //close enough to pollen so stop - or perform collection action
+                            drive(0.0, 0.4, direction.Forward);
+                        }
+                    }
+                }
+            }else{
+                //No target detected, stop the robot or search
+                drive(0.0, 0.2, direction.Forward);
+            }
+        }
     }
 
     /*
@@ -79,7 +130,7 @@ public class LimeLightTest extends OpMode {
      */
     @Override
     public void start() {
-        camera.start();
+
     }
 
 
