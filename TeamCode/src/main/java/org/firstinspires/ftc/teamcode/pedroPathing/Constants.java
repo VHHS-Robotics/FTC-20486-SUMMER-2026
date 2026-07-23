@@ -27,25 +27,24 @@ Constants {
             .rightRearMotorName("back_right")
             .leftRearMotorName("back_left")
             .leftFrontMotorName("front_left")
-            .leftFrontMotorDirection(DcMotorSimple.Direction.REVERSE)
+            .leftFrontMotorDirection(DcMotorSimple.Direction.FORWARD)
             .leftRearMotorDirection(DcMotorSimple.Direction.REVERSE)
-            .rightFrontMotorDirection(DcMotorSimple.Direction.REVERSE)
-            .rightRearMotorDirection(DcMotorSimple.Direction.FORWARD);
+            .rightFrontMotorDirection(DcMotorSimple.Direction.FORWARD)
+            .rightRearMotorDirection(DcMotorSimple.Direction.REVERSE);
     public static DriveEncoderConstants localizerConstants = new DriveEncoderConstants()
             .rightFrontMotorName("front_right")
             .rightRearMotorName("back_right")
             .leftRearMotorName("back_left")
             .leftFrontMotorName("front_left")
-            .leftFrontEncoderDirection(Encoder.REVERSE)
+            .leftFrontEncoderDirection(Encoder.FORWARD)
             .leftRearEncoderDirection(Encoder.REVERSE)
-            .rightFrontEncoderDirection(Encoder.REVERSE)
-            .rightRearEncoderDirection(Encoder.FORWARD)
+            .rightFrontEncoderDirection(Encoder.FORWARD)
+            .rightRearEncoderDirection(Encoder.REVERSE)
             .robotWidth(/*Insert Robot Width Here-->*/19.25)
             .robotLength(/*Insert Robot Length Here--> */18.75)
-            .forwardTicksToInches(/*Insert Result from Forward Ticks to Inches here-->*/-0.3)
-            .strafeTicksToInches(/*Insert Result from Strafe Ticks to Inches here -->*/-0.12)
-            .turnTicksToInches(/*Insert Result from Turn Ticks to Inches here -->*/-0.45)
-
+            .forwardTicksToInches(/*Insert Result from Forward Ticks to Inches here-->*/-0.11)
+            .strafeTicksToInches(/*Insert Result from Strafe Ticks to Inches here -->*/0.024)
+            .turnTicksToInches(/*Insert Result from Turn Ticks to Inches here -->*/0.176)
             ;
     /**
      * This is where your drive follower is actually created!
