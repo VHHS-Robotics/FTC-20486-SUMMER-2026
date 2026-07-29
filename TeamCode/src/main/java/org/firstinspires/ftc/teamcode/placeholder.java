@@ -11,10 +11,10 @@ public class placeholder extends OpMode{
 
     @Override
     public void init() {
-    leftfront = hardwareMap.get(DcMotor.class, "leftfront");
-    rightfront = hardwareMap.get(DcMotor.class,"rightfront");
-    leftrear = hardwareMap.get(DcMotor.class, "leftrear");
-    rightrear = hardwareMap.get(DcMotor.class, "rightrear");
+    leftfront = hardwareMap.get(DcMotor.class, "left front");
+    rightfront = hardwareMap.get(DcMotor.class,"right front");
+    leftrear = hardwareMap.get(DcMotor.class, "left rear");
+    rightrear = hardwareMap.get(DcMotor.class, "right rear");
     }
 
     @Override
