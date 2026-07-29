@@ -3,9 +3,8 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-@TeleOp(name = "Practis"  )
+@TeleOp(name = "Practis" )
 public class Practis extends OpMode {
-    public int move = 13;
     DcMotor leftfront;
     DcMotor rightfront;
     DcMotor leftrear;
@@ -69,4 +68,3 @@ public class Practis extends OpMode {
         }
     }
 }
-//Weeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee...
