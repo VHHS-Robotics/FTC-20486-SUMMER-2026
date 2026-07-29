@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -80,49 +81,7 @@ public class LimeLightTest extends OpMode {
      */
     @Override
     public void init_loop() {
-        LLResult result = camera.getLatestResult();
-        double xOffset = result.getTx();
-        double targetArea = result.getTa();
-        if (result != null && result.isValid()) {
-            List<LLResultTypes.DetectorResult> detectedObjects = result.getDetectorResults();
-            if (!detectedObjects.isEmpty()) {
-                LLResultTypes.DetectorResult closestTarget = null;
-                double maxArea = 0.0;
-                for (LLResultTypes.DetectorResult obj : detectedObjects) {
-                    double area = obj.getTargetArea();
-                    if (area > maxArea) {
-                        maxArea = area;
-                        closestTarget = obj;
 
-                    }
-                }
-                if (closestTarget != null) {
-                    double tx = closestTarget.getTargetXDegrees();
-                    double ta = closestTarget.getTargetArea();
-                    double turnSpeed = tx * STEER_P;
-                    if (Math.abs(tx) > 2.0) {
-                        if (turnSpeed > 0) {
-                            drive(Math.abs(turnSpeed), 1, direction.Right);
-
-                        } else {
-                            drive(Math.abs(turnSpeed), 1, direction.Left);
-                        }
-                    } else {
-                        //robot is aligned drive towards the pollen
-                        //is the target area is less tha 40% too far, then drive forward
-                        if (ta < 40.0) {
-                            drive(0.4, 1, direction.Forward);
-                        } else {
-                            //close enough to pollen so stop - or perform collection action
-                            drive(0.0, 0.4, direction.Forward);
-                        }
-                    }
-                }
-            }else{
-                //No target detected, stop the robot or search
-                drive(0.0, 0.2, direction.Forward);
-            }
-        }
     }
 
     /*
@@ -139,7 +98,13 @@ public class LimeLightTest extends OpMode {
      */
     @Override
     public void loop() {
+        //get information from the camera
         LLStatus status = camera.getStatus();
+        LLResult result = camera.getLatestResult();
+        double xOffset = result.getTx();
+        double targetArea = result.getTa();
+
+        //print out the status
         telemetry.addData("Name", "%s",
                 status.getName());
         telemetry.addData("LL", "Temp: %.1fC, CPU: %.1f%%, FPS: %d",
@@ -147,34 +112,61 @@ public class LimeLightTest extends OpMode {
         telemetry.addData("Pipeline", "Index: %d, Type: %s",
                 status.getPipelineIndex(), status.getPipelineType());
 
-        LLResult result = camera.getLatestResult();
+        //if the camera found something valid
         if (result.isValid()) {
             // Access general information
             Pose3D botpose = result.getBotpose();
-            double captureLatency = result.getCaptureLatency();
-            double targetingLatency = result.getTargetingLatency();
-            double parseLatency = result.getParseLatency();
-            telemetry.addData("LL Latency", captureLatency + targetingLatency);
-            telemetry.addData("Parse Latency", parseLatency);
-            telemetry.addData("PythonOutput", java.util.Arrays.toString(result.getPythonOutput()));
-
             telemetry.addData("tx", result.getTx());
             telemetry.addData("txnc", result.getTxNC());
             telemetry.addData("ty", result.getTy());
             telemetry.addData("tync", result.getTyNC());
-
             telemetry.addData("Botpose", botpose.toString());
 
-            // Access detector results
-            List<LLResultTypes.DetectorResult> detectorResults = result.getDetectorResults();
-            for (LLResultTypes.DetectorResult dr : detectorResults) {
-                telemetry.addData("Detector", "Class: %s, Area: %.2f", dr.getClassName(), dr.getTargetArea());
+
+            // Access detector results/objects it found
+            List<LLResultTypes.DetectorResult> detectedObjects = result.getDetectorResults();
+
+            LLResultTypes.DetectorResult closestTarget = null;
+            double maxArea = 0.0;
+
+            for (LLResultTypes.DetectorResult obj : detectedObjects) { //look at all the objects detected and find the closest
+                telemetry.addData("Detector", "Class: %s, Area: %.2f", obj.getClassName(), obj.getTargetArea());
+
+                double area = obj.getTargetArea();
+                if (area > maxArea) {
+                    maxArea = area;
+                    closestTarget = obj;
+                }
+            }
+
+            //drive towards the closest object
+            if (closestTarget != null) {
+                double tx = closestTarget.getTargetXDegrees();
+                double ta = closestTarget.getTargetArea();
+                double turnSpeed = tx * STEER_P;
+                if (Math.abs(tx) > 2.0) {
+                    if (turnSpeed > 0) {
+                        drive(Math.abs(turnSpeed), 0.2, direction.Right);
+
+                    } else {
+                        drive(Math.abs(turnSpeed), 0.2, direction.Left);
+                    }
+                } else {
+                    //robot is aligned drive towards the pollen
+                    //is the target area is less tha 40% too far, then drive forward
+                    if (ta < 40.0) {
+                        drive(0.4, 0.2, direction.Forward);
+                    } else {
+                        //close enough to pollen so stop - or perform collection action
+                        drive(0.0, 0.2, direction.Forward);
+                    }
+                }
+            }else{ //didn't find anything
+                drive(0.0, 0.2, direction.Forward); //stop moving
             }
         } else {
             telemetry.addData("Limelight", "No data available");
         }
-
-        telemetry.update();
     }
 
     /**
