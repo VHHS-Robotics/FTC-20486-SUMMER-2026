@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
 @TeleOp(name = "Practis" )
 public class Practis extends OpMode {
     private DcMotor leftfront;
@@ -10,12 +12,15 @@ public class Practis extends OpMode {
     private DcMotor leftrear;
     private DcMotor rightrear;
 
+
     @Override
     public void init() {
         leftfront = hardwareMap.get(DcMotor.class, "left front");
         rightfront = hardwareMap.get(DcMotor.class, "right front");
         leftrear = hardwareMap.get(DcMotor.class, "left rear");
         rightrear = hardwareMap.get(DcMotor.class, "right rear");
+
+        rightrear.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     @Override
