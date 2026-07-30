@@ -22,7 +22,7 @@ Constants {
 
 
     public static MecanumConstants driveConstants = new MecanumConstants()
-            .maxPower(1)
+            .maxPower(0.45)
             .rightFrontMotorName("front_right")
             .rightRearMotorName("back_right")
             .leftRearMotorName("back_left")
@@ -37,15 +37,18 @@ Constants {
             .leftRearMotorName("back_left")
             .leftFrontMotorName("front_left")
             .leftFrontEncoderDirection(Encoder.FORWARD)
-            .leftRearEncoderDirection(Encoder.FORWARD)
+            .leftRearEncoderDirection(Encoder.REVERSE)
             .rightFrontEncoderDirection(Encoder.FORWARD)
-            .rightRearEncoderDirection(Encoder.FORWARD)
+            .rightRearEncoderDirection(Encoder.REVERSE)
             .robotWidth(/*Insert Robot Width Here-->*/19.25)
             .robotLength(/*Insert Robot Length Here--> */18.75)
-            .forwardTicksToInches(/*Insert Result from Forward Ticks to Inches here-->*/-0.11)
-            .strafeTicksToInches(/*Insert Result from Strafe Ticks to Inches here -->*/0.024)
-            .turnTicksToInches(/*Insert Result from Turn Ticks to Inches here -->*/0.176)
+            .forwardTicksToInches(/*Insert Result from Forward Ticks to Inches here-->*/0.01)
+            .strafeTicksToInches(/*Insert Result from Strafe Ticks to Inches here -->*/0.01)
+            .turnTicksToInches(/*Insert Result from Turn Ticks to Inches here -->*/0.147)
             ;
+
+
+    //original logged values forward: -0.11, strafe 0.024
     /**
      * This is where your drive follower is actually created!
      * @param hardwareMap Hardwaremap from your opmode

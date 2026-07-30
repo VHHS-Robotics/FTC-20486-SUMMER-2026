@@ -1174,7 +1174,7 @@ class DriveTuner extends OpMode {
  * @version 1.0, 3/12/2024
  */
 class Line extends OpMode {
-    public static double DISTANCE = 40;
+    public static double DISTANCE = 100;
     private boolean forward = true;
 
     private Path forwards;
@@ -1211,7 +1211,8 @@ class Line extends OpMode {
     public void loop() {
         follower.update();
         drawCurrentAndHistory();
-
+        telemetryM.addData("Xpos",follower.getPose().getX());
+        telemetryM.addData("Ypos",follower.getPose().getY());
         if (!follower.isBusy()) {
             if (forward) {
                 forward = false;
@@ -1220,6 +1221,8 @@ class Line extends OpMode {
                 forward = true;
                 follower.followPath(forwards);
             }
+        } else {
+            telemetryM.addLine("Current Progress" + follower.getCurrentPath().getDistanceRemaining());
         }
 
         telemetryM.debug("Driving Forward?: " + forward);
