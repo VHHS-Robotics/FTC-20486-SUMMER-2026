@@ -23,7 +23,6 @@ public class Practis extends OpMode {
         rightrear.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
-
     @Override
     public void loop() {
         if (gamepad1.left_stick_x <= -0.5) {
@@ -31,32 +30,27 @@ public class Practis extends OpMode {
             rightrear.setPower(1);
             leftfront.setPower(-1);
             leftrear.setPower(-1);
-        } else {
-            if (gamepad1.left_stick_x >= 0.5) {
+        } else if (gamepad1.left_stick_x >= 0.5) {
                 rightfront.setPower(-1);
                 rightrear.setPower(-1);
                 leftfront.setPower(1);
                 leftrear.setPower(1);
-            } else {
-                if (gamepad1.right_stick_x >= 0.5) {
+            } else if (gamepad1.right_stick_x >= 0.5) {
                     rightfront.setPower(-1);
                     rightrear.setPower(1);
                     leftfront.setPower(1);
                     leftrear.setPower(-1);
-                } else {
-                    if (gamepad1.right_stick_x <= -0.5) {
+                } else if (gamepad1.right_stick_x <= -0.5) {
                         rightfront.setPower(1);
                         rightrear.setPower(-1);
                         leftfront.setPower(-1);
                         leftrear.setPower(1);
-                    } else {
-                        if (gamepad1.right_stick_y >= 0.5) {
+                    } else if (gamepad1.right_stick_y >= 0.5) {
                             rightfront.setPower(1);
                             rightrear.setPower(1);
                             leftfront.setPower(1);
                             leftrear.setPower(1);
-                        } else {
-                            if (gamepad1.right_stick_y <= -0.5) {
+                        } else if (gamepad1.right_stick_y <= -0.5) {
                                 rightfront.setPower(-1);
                                 rightrear.setPower(-1);
                                 leftfront.setPower(-1);
@@ -66,11 +60,6 @@ public class Practis extends OpMode {
                                 rightrear.setPower(0);
                                 leftfront.setPower(0);
                                 leftrear.setPower(0);
-                            }
-                        }
-                    }
-                }
-            }
         }
     }
 }
