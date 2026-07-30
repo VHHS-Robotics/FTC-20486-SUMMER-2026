@@ -35,7 +35,7 @@ import com.qualcomm.hardware.dfrobot.HuskyLens;
  * Driver Station OpMode list, or add a @Disabled annotation to prevent this OpMode from being
  * added to the Driver Station.
  */
-@Autonomous(name = "CamTest")
+@Autonomous(name = "HuskyLens Test")
 public class CamTest extends OpMode {
     /* Declare OpMode members. */
   private HuskyLens camera;

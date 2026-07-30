@@ -6,10 +6,10 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 @TeleOp (name="placeholder")
 public class placeholder extends OpMode {
-    DcMotor leftfront;
-    DcMotor rightfront;
-    DcMotor leftrear;
-    DcMotor rightrear;
+    private DcMotor leftfront;
+    private DcMotor rightfront;
+    private DcMotor leftrear;
+    private DcMotor rightrear;
 
     @Override
     public void init() {
