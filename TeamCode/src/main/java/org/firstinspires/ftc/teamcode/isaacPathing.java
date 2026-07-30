@@ -1,4 +1,5 @@
 package org.firstinspires.ftc.teamcode;
+import com.pedropathing.paths.Path;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.bylazar.configurables.annotations.Configurable;
@@ -47,8 +48,15 @@ public class isaacPathing extends OpMode {
 
     public static class Paths {
         public PathChain MainChain;
+        public Path Initial;
+
 
         public Paths(Follower follower) {
+
+            Initial = new Path(new BezierLine(
+                    new Pose(56.000, 8.000),
+                    new Pose(56.000, 36.186)
+            ));
             MainChain = follower.pathBuilder()
                     .addPath(
                             new BezierLine(
@@ -68,7 +76,8 @@ public class isaacPathing extends OpMode {
         switch (pathState) {
             case 0:
                 if(!follower.isBusy()) {
-                    follower.followPath(paths.MainChain,0.1,true);
+                    follower.setMaxPower(0.45);
+                    follower.followPath(paths.Initial,true);
                 }
                 else {
                     pathState = 1;
