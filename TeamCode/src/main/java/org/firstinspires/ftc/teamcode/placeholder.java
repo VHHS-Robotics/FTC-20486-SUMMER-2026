@@ -25,36 +25,42 @@ public class placeholder extends OpMode {
 
     @Override
     public void loop() {
-        if (gamepad1.left_stick_x <= -0.5) {
+if (gamepad1.left_stick_x <= -0.5) {
             rightfront.setPower(1);
             leftfront.setPower(1);
             leftrear.setPower(1);
             rightrear.setPower(1);
-            if (gamepad1.left_stick_x <= 0.5) {
+}
+            if (gamepad1.left_stick_x >= 0.5) {
                 rightfront.setPower(-1);
                 leftfront.setPower(-1);
                 leftrear.setPower(-1);
                 rightrear.setPower(-1);
+            }
                 if (gamepad1.right_stick_x <= -0.5) {
                     rightfront.setPower(-1);
                     leftfront.setPower(-1);
                     leftrear.setPower(1);
                     rightrear.setPower(1);
-                    if (gamepad1.right_stick_x <= 0.5) {
+                }
+                    if (gamepad1.right_stick_x >= 0.5) {
                         rightfront.setPower(1);
                         leftfront.setPower(1);
                         leftrear.setPower(-1);
                         rightrear.setPower(-1);
+                    }
                         if (gamepad1.right_stick_y <= -0.5) {
                             rightfront.setPower(-1);
                             leftfront.setPower(1);
                             leftrear.setPower(1);
                             rightrear.setPower(-1);
-                            if (gamepad1.right_stick_y <= 0.5) {
-                                rightfront.setPower(1);
-                                leftfront.setPower(-1);
-                                leftrear.setPower(-1);
-                                rightrear.setPower(1);
+                            {
+                        if (gamepad1.right_stick_y >= 0.5) {
+                            rightfront.setPower(1);
+                            leftfront.setPower(-1);
+                            leftrear.setPower(-1);
+                            rightrear.setPower(1);
+                        }
                                 if (gamepad1.right_stick_x == 0) {
                                     if (gamepad1.left_stick_y == 0) {
                                         if (gamepad1.left_stick_x == 0) {
@@ -74,8 +80,5 @@ public class placeholder extends OpMode {
                         }
                     }
                 }
-            }
-        }
-    }
-}
+
 
