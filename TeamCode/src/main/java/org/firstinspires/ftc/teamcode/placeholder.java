@@ -62,9 +62,16 @@ public class placeholder extends OpMode {
                                 leftfront.setPower(1);
                                 leftrear.setPower(-1);
                                 rightrear.setPower(0);
+                            } else {
+                                if (gamepad2.right_stick_x <= 0.5) {
+                                    rightfront.setPower(0);
+                                    leftfront.setPower(0);
+                                    leftrear.setPower(0);
+                                    rightrear.setPower(-0);
+
+                                }
+
                             }
-
-
                         }
                     }
                 }
