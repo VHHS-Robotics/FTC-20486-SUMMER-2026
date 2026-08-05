@@ -25,41 +25,52 @@ public class Practis extends OpMode {
 
     @Override
     public void loop() {
+
         if (gamepad1.left_stick_x <= -0.5) {
             RF.setPower(1);
+            RR.setPower(1);
+            LF.setPower(1);
+            LR.setPower(1);
+        }
+        if (gamepad1.left_stick_x >= 0.5) {
+            RF.setPower(-1);
             RR.setPower(-1);
             LF.setPower(-1);
             LR.setPower(-1);
-        } else if (gamepad1.left_stick_x >= 0.5) {
-                RF.setPower(-1);
-                RR.setPower(1);
-                LF.setPower(1);
-                LR.setPower(1);
-            } else if (gamepad1.right_stick_x >= 0.5) {
-                    RF.setPower(-1);
-                    RR.setPower(-1);
-                    LF.setPower(1);
-                    LR.setPower(-1);
-                } else if (gamepad1.right_stick_x <= -0.5) {
-                        RF.setPower(1);
-                        RR.setPower(1);
-                        LF.setPower(-1);
-                        LR.setPower(1);
-                    } else if (gamepad1.right_stick_y >= 0.5) {
-                            RF.setPower(1);
-                            RR.setPower(-1);
-                            LF.setPower(1);
-                            LR.setPower(1);
-                        } else if (gamepad1.right_stick_y <= -0.5) {
-                                RF.setPower(-1);
-                                RR.setPower(1);
-                                LF.setPower(-1);
-                                LR.setPower(-1);
-                            } else {
-                                RF.setPower(0);
-                                RR.setPower(0);
-                                LF.setPower(0);
-                                LR.setPower(0);
+        }
+        if (gamepad1.right_stick_x >= 0.5) {
+            RF.setPower(-1);
+            RR.setPower(1);
+            LF.setPower(-1);
+            LR.setPower(1);
+        }
+        if (gamepad1.right_stick_x <= -0.5) {
+            RF.setPower(1);
+            RR.setPower(-1);
+            LF.setPower(1);
+            LR.setPower(-1);
+        }
+        if (gamepad1.right_stick_y >= 0.5) {
+            RF.setPower(-1);
+            RR.setPower(-1);
+            LF.setPower(1);
+            LR.setPower(1);
+        }
+        if (gamepad1.right_stick_y <= -0.5) {
+            RF.setPower(1);
+            RR.setPower(1);
+            LF.setPower(-1);
+            LR.setPower(-1);
+        }
+            if (gamepad1.right_stick_y == 0) {
+                if (gamepad1.right_stick_x == 0) {
+                    if (gamepad1.left_stick_x == 0) {
+                        RF.setPower(0);
+                        RR.setPower(0);
+                        LF.setPower(0);
+                        LR.setPower(0);
+                }
+            }
         }
     }
 }
