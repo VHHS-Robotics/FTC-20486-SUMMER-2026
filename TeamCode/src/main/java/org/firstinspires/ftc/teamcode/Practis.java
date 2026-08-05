@@ -21,6 +21,8 @@ public class Practis extends OpMode {
         RR = hardwareMap.get(DcMotor.class, "right rear");
 
         RR.setDirection(DcMotorSimple.Direction.REVERSE);
+        LF.setDirection(DcMotorSimple.Direction.REVERSE);
+        LR.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     @Override
@@ -29,38 +31,38 @@ public class Practis extends OpMode {
         if (gamepad1.left_stick_x <= -0.5) {
             RF.setPower(1);
             RR.setPower(1);
-            LF.setPower(1);
-            LR.setPower(1);
+            LF.setPower(-1);
+            LR.setPower(-1);
         }
         if (gamepad1.left_stick_x >= 0.5) {
             RF.setPower(-1);
             RR.setPower(-1);
-            LF.setPower(-1);
-            LR.setPower(-1);
+            LF.setPower(1);
+            LR.setPower(1);
         }
         if (gamepad1.right_stick_x >= 0.5) {
             RF.setPower(-1);
             RR.setPower(1);
-            LF.setPower(-1);
-            LR.setPower(1);
+            LF.setPower(1);
+            LR.setPower(-1);
         }
         if (gamepad1.right_stick_x <= -0.5) {
             RF.setPower(1);
             RR.setPower(-1);
-            LF.setPower(1);
-            LR.setPower(-1);
+            LF.setPower(-1);
+            LR.setPower(1);
         }
         if (gamepad1.right_stick_y >= 0.5) {
             RF.setPower(-1);
             RR.setPower(-1);
-            LF.setPower(1);
-            LR.setPower(1);
+            LF.setPower(-1);
+            LR.setPower(-1);
         }
         if (gamepad1.right_stick_y <= -0.5) {
             RF.setPower(1);
             RR.setPower(1);
-            LF.setPower(-1);
-            LR.setPower(-1);
+            LF.setPower(1);
+            LR.setPower(1);
         }
             if (gamepad1.right_stick_y == 0) {
                 if (gamepad1.right_stick_x == 0) {
