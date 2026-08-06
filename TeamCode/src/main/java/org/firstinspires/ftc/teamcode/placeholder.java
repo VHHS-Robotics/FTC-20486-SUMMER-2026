@@ -20,65 +20,61 @@ public class placeholder extends OpMode {
         rightfront = hardwareMap.get(DcMotor.class, "right front");
         leftrear = hardwareMap.get(DcMotor.class, "left rear");
         rightrear = hardwareMap.get(DcMotor.class, "right rear");
-        rightrear.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightfront.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
-    @Override
-    public void loop() {
+@Override
+public void loop() {
 if (gamepad1.left_stick_x <= -0.5) {
-            rightfront.setPower(1);
-            leftfront.setPower(1);
-            leftrear.setPower(1);
-            rightrear.setPower(1);
+rightfront.setPower(1);
+leftfront.setPower(-1);
+leftrear.setPower(1);
+rightrear.setPower(-1);
 }
-            if (gamepad1.left_stick_x >= 0.5) {
-                rightfront.setPower(-1);
-                leftfront.setPower(-1);
-                leftrear.setPower(-1);
-                rightrear.setPower(-1);
-            }
-                if (gamepad1.right_stick_x <= -0.5) {
-                    rightfront.setPower(-1);
-                    leftfront.setPower(-1);
-                    leftrear.setPower(1);
-                    rightrear.setPower(1);
+if (gamepad1.left_stick_x >= 0.5) {
+rightfront.setPower(-1);
+leftfront.setPower(1);
+leftrear.setPower(-1);
+rightrear.setPower(1);
+}
+if (gamepad1.right_stick_x <= -0.5) {
+rightfront.setPower(1);
+leftfront.setPower(-1);
+leftrear.setPower(1);
+rightrear.setPower(-1);
+}
+if (gamepad1.right_stick_x >= 0.5) {
+rightfront.setPower(1);
+leftfront.setPower(-1);
+leftrear.setPower(1);
+rightrear.setPower(-1);
+}
+if (gamepad1.right_stick_y <= -0.5) {
+    rightfront.setPower(-1);
+    leftfront.setPower(-1);
+    leftrear.setPower(-1);
+    rightrear.setPower(-1);
+}
+ if (gamepad1.right_stick_y >= 0.5) {
+rightfront.setPower(1);
+leftfront.setPower(1);
+leftrear.setPower(1);
+rightrear.setPower(1);
+        }
+        if (gamepad1.right_stick_x == 0) {
+            if (gamepad1.left_stick_y == 0) {
+                if (gamepad1.left_stick_x == 0) {
+                    rightfront.setPower(0);
+                    leftfront.setPower(0);
+                    leftrear.setPower(0);
+                    rightrear.setPower(0);
                 }
-                    if (gamepad1.right_stick_x >= 0.5) {
-                        rightfront.setPower(1);
-                        leftfront.setPower(1);
-                        leftrear.setPower(-1);
-                        rightrear.setPower(-1);
-                    }
-                        if (gamepad1.right_stick_y <= -0.5) {
-                            rightfront.setPower(-1);
-                            leftfront.setPower(1);
-                            leftrear.setPower(1);
-                            rightrear.setPower(-1);
-                            {
-                        if (gamepad1.right_stick_y >= 0.5) {
-                            rightfront.setPower(1);
-                            leftfront.setPower(-1);
-                            leftrear.setPower(-1);
-                            rightrear.setPower(1);
-                        }
-                                if (gamepad1.right_stick_x == 0) {
-                                    if (gamepad1.left_stick_y == 0) {
-                                        if (gamepad1.left_stick_x == 0) {
-                                            rightfront.setPower(0);
-                                            leftfront.setPower(0);
-                                            leftrear.setPower(0);
-                                            rightrear.setPower(0);
-                                        }
+            }
 
-
-                                    }
-
-
-                                }
+        }
 
                             }
                         }
-                    }
-                }
+
 
 
