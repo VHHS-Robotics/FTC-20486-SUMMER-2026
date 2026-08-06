@@ -20,9 +20,7 @@ public class placeholder extends OpMode {
         rightfront = hardwareMap.get(DcMotor.class, "right front");
         leftrear = hardwareMap.get(DcMotor.class, "left rear");
         rightrear = hardwareMap.get(DcMotor.class, "right rear");
-        rightrear.setDirection(DcMotorSimple.Direction.REVERSE);
-        leftfront.setDirection(DcMotorSimple.Direction.REVERSE);
-        leftrear.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightfront.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
 @Override
