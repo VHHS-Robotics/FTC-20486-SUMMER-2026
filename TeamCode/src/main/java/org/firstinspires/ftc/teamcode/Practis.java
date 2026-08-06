@@ -28,6 +28,13 @@ public class Practis extends OpMode {
     @Override
     public void loop() {
 
+        if (gamepad1.left_stick_y < -0.5) {
+            RR.setDirection(DcMotorSimple.Direction.FORWARD);
+            LF.setDirection(DcMotorSimple.Direction.FORWARD);
+            LR.setDirection(DcMotorSimple.Direction.FORWARD);
+            RF.setDirection(DcMotorSimple.Direction.REVERSE);
+        }
+
         if (gamepad1.left_stick_x <= -0.5) {
             RF.setPower(1);
             RR.setPower(1);
