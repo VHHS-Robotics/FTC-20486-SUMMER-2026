@@ -28,51 +28,89 @@ public class Practis extends OpMode {
     @Override
     public void loop() {
 
-        if (gamepad1.left_stick_x <= -0.5) {
-            RF.setPower(1);
-            RR.setPower(1);
-            LF.setPower(-1);
-            LR.setPower(-1);
+
+        if (gamepad1.left_stick_y > 0) {
+            RR.setDirection(DcMotorSimple.Direction.FORWARD);
+            LF.setDirection(DcMotorSimple.Direction.FORWARD);
+            LR.setDirection(DcMotorSimple.Direction.FORWARD);
+            RF.setDirection(DcMotorSimple.Direction.REVERSE);
         }
-        if (gamepad1.left_stick_x >= 0.5) {
-            RF.setPower(-1);
-            RR.setPower(-1);
-            LF.setPower(1);
-            LR.setPower(1);
-        }
-        if (gamepad1.right_stick_x >= 0.5) {
-            RF.setPower(-1);
-            RR.setPower(1);
-            LF.setPower(1);
-            LR.setPower(-1);
-        }
-        if (gamepad1.right_stick_x <= -0.5) {
-            RF.setPower(1);
-            RR.setPower(-1);
-            LF.setPower(-1);
-            LR.setPower(1);
-        }
-        if (gamepad1.right_stick_y >= 0.5) {
-            RF.setPower(-1);
-            RR.setPower(-1);
-            LF.setPower(-1);
-            LR.setPower(-1);
-        }
-        if (gamepad1.right_stick_y <= -0.5) {
-            RF.setPower(1);
-            RR.setPower(1);
-            LF.setPower(1);
-            LR.setPower(1);
-        }
-            if (gamepad1.right_stick_y == 0) {
-                if (gamepad1.right_stick_x == 0) {
-                    if (gamepad1.left_stick_x == 0) {
-                        RF.setPower(0);
-                        RR.setPower(0);
-                        LF.setPower(0);
-                        LR.setPower(0);
-                }
+            if (gamepad1.bWasPressed()) {
+                RR.setDirection(DcMotorSimple.Direction.REVERSE);
+                LF.setDirection(DcMotorSimple.Direction.FORWARD);
+                LR.setDirection(DcMotorSimple.Direction.REVERSE);
+                RF.setDirection(DcMotorSimple.Direction.FORWARD);
             }
-        }
-    }
-}
+                if (gamepad1.bWasReleased()) {
+                    RR.setDirection(DcMotorSimple.Direction.FORWARD);
+                    LF.setDirection(DcMotorSimple.Direction.FORWARD);
+                    LR.setDirection(DcMotorSimple.Direction.FORWARD);
+                    RF.setDirection(DcMotorSimple.Direction.FORWARD);
+                }
+                    if (gamepad1.xWasPressed()) {
+                        RR.setPower(1);
+                        LF.setDirection(DcMotorSimple.Direction.REVERSE);
+                        LR.setPower(-1);
+                        RF.setDirection(DcMotorSimple.Direction.FORWARD);
+                    }
+
+                        if (gamepad1.aWasReleased()) {
+                            RR.setDirection(DcMotorSimple.Direction.REVERSE);
+                            LF.setDirection(DcMotorSimple.Direction.REVERSE);
+                            LR.setDirection(DcMotorSimple.Direction.REVERSE);
+                            RF.setDirection(DcMotorSimple.Direction.FORWARD);
+                            RR.setPower(1);
+                            LF.setPower(1);
+                            LR.setPower(1);
+                            RF.setPower(1);
+                        }
+
+
+                        if (gamepad1.left_stick_x <= -0.5) {
+                            RF.setPower(1);
+                            RR.setPower(1);
+                            LF.setPower(-1);
+                            LR.setPower(-1);
+                        }
+                        if (gamepad1.left_stick_x >= 0.5) {
+                            RF.setPower(-1);
+                            RR.setPower(-1);
+                            LF.setPower(1);
+                            LR.setPower(1);
+                        }
+                        if (gamepad1.right_stick_x >= 0.5) {
+                            RF.setPower(-1);
+                            RR.setPower(1);
+                            LF.setPower(1);
+                            LR.setPower(-1);
+                        }
+                        if (gamepad1.right_stick_x <= -0.5) {
+                            RF.setPower(1);
+                            RR.setPower(-1);
+                            LF.setPower(-1);
+                            LR.setPower(1);
+                        }
+                        if (gamepad1.right_stick_y >= 0.5) {
+                            RF.setPower(-1);
+                            RR.setPower(-1);
+                            LF.setPower(-1);
+                            LR.setPower(-1);
+                        }
+                        if (gamepad1.right_stick_y <= -0.5) {
+                            RF.setPower(1);
+                            RR.setPower(1);
+                            LF.setPower(1);
+                            LR.setPower(1);
+                        }
+                        if (gamepad1.right_stick_y == 0) {
+                            if (gamepad1.right_stick_x == 0) {
+                                if (gamepad1.left_stick_x == 0) {
+                                    RF.setPower(0);
+                                    RR.setPower(0);
+                                    LF.setPower(0);
+                                    LR.setPower(0);
+                                }
+                            }
+                        }
+                    }
+                }
