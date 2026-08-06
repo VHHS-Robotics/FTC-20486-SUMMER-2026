@@ -27,14 +27,7 @@ public class Practis extends OpMode {
 
     @Override
     public void loop() {
-        double y = -gamepad1.right_stick_y; // Remember, Y stick is reversed!
-        double x = gamepad1.right_stick_x;
-        double rx = gamepad1.left_stick_x;
 
-        LF.setPower(y + x + rx + y + x + rx);
-        LR.setPower(y - x + rx + y - x + rx);
-        RF.setPower(y - x - rx + y - x - rx);
-        RR.setPower(y + x - rx + y + x - rx);
 
         if (gamepad1.left_stick_y > 0) {
             RR.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -72,51 +65,53 @@ public class Practis extends OpMode {
                             RF.setPower(1);
 
                         }
-/*
-        if (gamepad1.left_stick_x <= -0.5) {
-            RF.setPower(1);
-            RR.setPower(1);
-            LF.setPower(-1);
-            LR.setPower(-1);
-        }
-        if (gamepad1.left_stick_x >= 0.5) {
-            RF.setPower(-1);
-            RR.setPower(-1);
-            LF.setPower(1);
-            LR.setPower(1);
-        }
-        if (gamepad1.right_stick_x >= 0.5) {
-            RF.setPower(-1);
-            RR.setPower(1);
-            LF.setPower(1);
-            LR.setPower(-1);
-        }
-        if (gamepad1.right_stick_x <= -0.5) {
-            RF.setPower(1);
-            RR.setPower(-1);
-            LF.setPower(-1);
-            LR.setPower(1);
-        }
-        if (gamepad1.right_stick_y >= 0.5) {
-            RF.setPower(-1);
-            RR.setPower(-1);
-            LF.setPower(-1);
-            LR.setPower(-1);
-        }
-        if (gamepad1.right_stick_y <= -0.5) {
-            RF.setPower(1);
-            RR.setPower(1);
-            LF.setPower(1);
-            LR.setPower(1);
-        }
-            if (gamepad1.right_stick_y == 0) {
-                if (gamepad1.right_stick_x == 0) {
-                    if (gamepad1.left_stick_x == 0) {
-                        RF.setPower(0);
-                        RR.setPower(0);
-                        LF.setPower(0);
-                        LR.setPower(0);
-                }*/
+
+                        if (gamepad1.left_stick_x <= -0.5) {
+                            RF.setPower(1);
+                            RR.setPower(1);
+                            LF.setPower(-1);
+                            LR.setPower(-1);
+                        }
+                        if (gamepad1.left_stick_x >= 0.5) {
+                            RF.setPower(-1);
+                            RR.setPower(-1);
+                            LF.setPower(1);
+                            LR.setPower(1);
+                        }
+                        if (gamepad1.right_stick_x >= 0.5) {
+                            RF.setPower(-1);
+                            RR.setPower(1);
+                            LF.setPower(1);
+                            LR.setPower(-1);
+                        }
+                        if (gamepad1.right_stick_x <= -0.5) {
+                            RF.setPower(1);
+                            RR.setPower(-1);
+                            LF.setPower(-1);
+                            LR.setPower(1);
+                        }
+                        if (gamepad1.right_stick_y >= 0.5) {
+                            RF.setPower(-1);
+                            RR.setPower(-1);
+                            LF.setPower(-1);
+                            LR.setPower(-1);
+                        }
+                        if (gamepad1.right_stick_y <= -0.5) {
+                            RF.setPower(1);
+                            RR.setPower(1);
+                            LF.setPower(1);
+                            LR.setPower(1);
+                        }
+                        if (gamepad1.right_stick_y == 0) {
+                            if (gamepad1.right_stick_x == 0) {
+                                if (gamepad1.left_stick_x == 0) {
+                                    RF.setPower(0);
+                                    RR.setPower(0);
+                                    LF.setPower(0);
+                                    LR.setPower(0);
+                                }
+                            }
+                        }
                     }
                 }
             }
