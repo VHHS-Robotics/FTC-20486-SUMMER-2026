@@ -52,11 +52,11 @@ leftrear.setPower(1);
 rightrear.setPower(-1);
 }
 if (gamepad1.right_stick_y <= -0.5) {
-rightfront.setPower(-1);
-leftfront.setPower(-1);
-leftrear.setPower(-1);
-rightrear.setPower(-1);
-    {
+    rightfront.setPower(-1);
+    leftfront.setPower(-1);
+    leftrear.setPower(-1);
+    rightrear.setPower(-1);
+}
  if (gamepad1.right_stick_y >= 0.5) {
 rightfront.setPower(1);
 leftfront.setPower(1);
@@ -77,7 +77,6 @@ rightrear.setPower(1);
 
                             }
                         }
-                    }
-                }
+
 
 
