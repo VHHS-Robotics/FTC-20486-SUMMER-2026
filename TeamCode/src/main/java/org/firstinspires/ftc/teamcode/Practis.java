@@ -34,25 +34,25 @@ public class Practis extends OpMode {
             LF.setDirection(DcMotorSimple.Direction.FORWARD);
             LR.setDirection(DcMotorSimple.Direction.FORWARD);
             RF.setDirection(DcMotorSimple.Direction.REVERSE);
-
+        }
             if (gamepad1.bWasPressed()) {
                 RR.setDirection(DcMotorSimple.Direction.REVERSE);
                 LF.setDirection(DcMotorSimple.Direction.FORWARD);
                 LR.setDirection(DcMotorSimple.Direction.REVERSE);
                 RF.setDirection(DcMotorSimple.Direction.FORWARD);
-
+            }
                 if (gamepad1.bWasReleased()) {
                     RR.setDirection(DcMotorSimple.Direction.FORWARD);
                     LF.setDirection(DcMotorSimple.Direction.FORWARD);
                     LR.setDirection(DcMotorSimple.Direction.FORWARD);
                     RF.setDirection(DcMotorSimple.Direction.FORWARD);
-
+                }
                     if (gamepad1.xWasPressed()) {
                         RR.setPower(1);
                         LF.setDirection(DcMotorSimple.Direction.REVERSE);
                         LR.setPower(-1);
                         RF.setDirection(DcMotorSimple.Direction.FORWARD);
-
+                    }
 
                         if (gamepad1.aWasReleased()) {
                             RR.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -63,8 +63,8 @@ public class Practis extends OpMode {
                             LF.setPower(1);
                             LR.setPower(1);
                             RF.setPower(1);
-
                         }
+
 
                         if (gamepad1.left_stick_x <= -0.5) {
                             RF.setPower(1);
@@ -114,7 +114,3 @@ public class Practis extends OpMode {
                         }
                     }
                 }
-            }
-        }
-    }
-}
