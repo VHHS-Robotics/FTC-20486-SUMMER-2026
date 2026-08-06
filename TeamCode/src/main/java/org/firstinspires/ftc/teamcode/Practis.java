@@ -36,7 +36,7 @@ public class Practis extends OpMode {
         RF.setPower(y - x - rx + y - x - rx);
         RR.setPower(y + x - rx + y + x - rx);
 
-        if (gamepad1.left_stick_y <= 0){
+        if (gamepad1.left_stick_y < 0){
             RR.setDirection(DcMotorSimple.Direction.FORWARD);
             LF.setDirection(DcMotorSimple.Direction.FORWARD);
             LR.setDirection(DcMotorSimple.Direction.FORWARD);
