@@ -46,16 +46,14 @@ if (gamepad1.aWasReleased()){
     rightrear.setPower(y + x - rx);
 }
 if (gamepad1.bWasPressed()){
-    leftfront.setPower(0.0);
-    leftrear.setPower(0.0);
-    rightfront.setPower(0.0);
-    rightrear.setPower(0.0);
+  y=0;;
+  x=0;
+  rx=0;
 }
  if (gamepad1.xWasPressed()){
-     leftfront.setPower(y + x + rx);
-     leftrear.setPower(y - x + rx);
-     rightfront.setPower(y - x - rx);
-     rightrear.setPower(y + x - rx);
+     y = -gamepad1.left_stick_y; // Remember, Y stick is reversed!
+     x = gamepad1.left_stick_x;
+     rx = gamepad1.right_stick_x;
  }
 //if (gamepad1.left_stick_x <= -0.5) {
 //rightfront.setPower(1);
