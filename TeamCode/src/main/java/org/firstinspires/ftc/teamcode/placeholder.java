@@ -25,8 +25,8 @@ public class placeholder extends OpMode {
         leftrear.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
-    @Override
-    public void loop() {
+@Override
+public void loop() {
 if (gamepad1.left_stick_x <= -0.5) {
 rightfront.setPower(1);
 leftfront.setPower(-1);
@@ -73,8 +73,7 @@ rightrear.setPower(1);
                 }
             }
 
-
-                                }
+        }
 
                             }
                         }
