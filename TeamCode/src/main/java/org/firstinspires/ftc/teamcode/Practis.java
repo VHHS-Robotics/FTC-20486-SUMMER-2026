@@ -41,7 +41,7 @@ public class Practis extends OpMode {
             LF.setDirection(DcMotorSimple.Direction.FORWARD);
             LR.setDirection(DcMotorSimple.Direction.FORWARD);
             RF.setDirection(DcMotorSimple.Direction.REVERSE);
-
+        }
             if (gamepad1.right_stick_y < 0) {
                 RR.setDirection(DcMotorSimple.Direction.REVERSE);
                 LF.setDirection(DcMotorSimple.Direction.REVERSE);
