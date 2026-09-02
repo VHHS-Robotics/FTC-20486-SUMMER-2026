@@ -83,7 +83,18 @@ public class LimeLightTest extends OpMode {
      */
     @Override
     public void init_loop() {
+        LLStatus status = camera.getStatus();
+        LLResult result = camera.getLatestResult();
 
+        //if the camera found something valid
+            // Access detector results/objects it found
+        List<LLResultTypes.DetectorResult> detectedObjects = result.getDetectorResults();
+
+        for (LLResultTypes.DetectorResult obj : detectedObjects) { //look at all the objects detected and find the closest
+            telemetry.addData("Detector", "Class: %s, Area: %f", obj.getClassName(), obj.getTargetArea());
+        }
+
+        telemetry.update();
     }
 
     /*
@@ -146,30 +157,32 @@ public class LimeLightTest extends OpMode {
             if (closestTarget != null) {
                 double tx = closestTarget.getTargetXDegrees();
                 double ta = closestTarget.getTargetArea();
+                telemetry.addData("TA: ",ta);
                 double turnSpeed = tx * STEER_P;
-                if (Math.abs(tx) > 2.0) {
+                if (Math.abs(tx) > 10) { //acceptable angle away from center
                     if (turnSpeed > 0) {
-                        drive(Math.abs(turnSpeed), 0.2, direction.Right);
+                        drive(0.2, 0.1, direction.Right);
 
                     } else {
-                        drive(Math.abs(turnSpeed), 0.2, direction.Left);
+                        drive(0.2, 0.1, direction.Left);
                     }
                 } else {
                     //robot is aligned drive towards the pollen
                     //is the target area is less tha 40% too far, then drive forward
-                    if (ta < 40.0) {
-                        drive(0.4, 0.2, direction.Forward);
+                    if (ta < 0.09) {
+                        drive(0.2, 0.2, direction.Forward);
                     } else {
                         //close enough to pollen so stop - or perform collection action
                         drive(0.0, 0.2, direction.Forward);
                     }
                 }
-            }else{ //didn't find anything
-                drive(0.0, 0.2, direction.Forward); //stop moving
             }
-        } else {
+        } else { //didn't find anything
             telemetry.addData("Limelight", "No data available");
+            drive(0.2, 0.2, direction.TurnR);
         }
+
+        telemetry.update();
     }
 
     /**
@@ -188,10 +201,6 @@ public class LimeLightTest extends OpMode {
         double mili = time * 1000; //convert time parameter to miliseconds
         
         while (timer.milliseconds() < mili) {
-            
-            telemetry.addData("direction", dir);
-
-            telemetry.update();
             
             //actually drive based on dir
             switch (dir) {
