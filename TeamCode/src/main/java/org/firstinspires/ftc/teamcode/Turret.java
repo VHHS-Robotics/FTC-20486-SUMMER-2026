@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode;
-import
+
+
+import com.qualcomm.robotcore.hardware.DcMotorEx;
+
 public class Turret {
-
-
+    private DcMotorEx turretmotor;
 }
