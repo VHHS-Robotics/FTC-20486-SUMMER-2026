@@ -1,11 +1,27 @@
+//package org.firstinspires.ftc.teamcode;
+//import com.qualcomm.robotcore.hardware.DcMotor;
+//import com.qualcomm.robotcore.hardware.DcMotorEx;
+//import com.qualcomm.robotcore.hardware.Servo;
+//import com.qualcomm.robotcore.hardware.HardwareMap;
+
 package org.firstinspires.ftc.teamcode;
+
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class Turret {
-//    private DcMotorEx turretMotor;
+  private DcMotor flyWheel;
+  private Servo turretServo;
+  public Turret (){
+//      Class<? extends DcMotor> DcMotor = null;
+      flyWheel = hardwareMap.get(DcMotor.class, "fly");
+      turretServo = hardwareMap.get(Servo.class, "adjuster");
+
+
+  }
+
 //    private final double P_GAIN = 0.005;
 //    private final double TICKS_PER_DEGREE = 28.0;
 //    private final double MAX_TICKS = 2000;
@@ -56,7 +72,6 @@ public class Turret {
 //    }
 //}
 //I am turret pew pew pew
-private DcMotorEx turretMotor;
-private Servo turretServo;
+
 
 }
