@@ -15,11 +15,13 @@ public class Turret {
   private DcMotor flyWheel;
   private Servo turretServo;
   public Turret (){
-      flyWheel = hardwareMap.get(DcMotor, "fly");
-      turretServo = hardwareMap.get(Servo, "adjuster");
+//      Class<? extends DcMotor> DcMotor = null;
+      flyWheel = hardwareMap.get(DcMotor.class, "fly");
+      turretServo = hardwareMap.get(Servo.class, "adjuster");
 
 
   }
+
 //    private final double P_GAIN = 0.005;
 //    private final double TICKS_PER_DEGREE = 28.0;
 //    private final double MAX_TICKS = 2000;
