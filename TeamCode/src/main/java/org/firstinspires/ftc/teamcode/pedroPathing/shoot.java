@@ -12,14 +12,6 @@ import com.pedropathing.math.Pose;
 import com.pedropathing.paths.Path;
 
     public class Paths {
-        import static com.pedropathing.api.Paths.*;
-import com.pedropathing.api.Paths;
-
-import com.pedropathing.api.PoseFactory;
-import com.pedropathing.math.Pose;
-import com.pedropathing.paths.Path;
-
-        public class Paths {
 
             private final PoseFactory poseFactory = PoseFactory.degrees().mirrorX(70.75);
 
