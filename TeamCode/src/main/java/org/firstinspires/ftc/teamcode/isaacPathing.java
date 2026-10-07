@@ -29,8 +29,7 @@ public class isaacPathing extends OpMode {
 
         paths = new Paths(follower); // Build paths
 
-        panelsTelemetry.debug("Status", "Initialized");
-        panelsTelemetry.update(telemetry);
+
     }
 
     @Override
