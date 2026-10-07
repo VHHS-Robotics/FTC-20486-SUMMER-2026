@@ -15,10 +15,11 @@ public class Turret {
   private DcMotor flyWheel;
   private Servo turretServo;
   public Turret (){
-//      Class<? extends DcMotor> DcMotor = null;
       flyWheel = hardwareMap.get(DcMotor.class, "fly");
       turretServo = hardwareMap.get(Servo.class, "adjuster");
+  }
 
+  public void wheelChange (){
 
   }
 
