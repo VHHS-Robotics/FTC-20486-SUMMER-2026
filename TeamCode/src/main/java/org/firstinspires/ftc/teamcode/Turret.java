@@ -1,11 +1,33 @@
+//package org.firstinspires.ftc.teamcode;
+//import com.qualcomm.robotcore.hardware.DcMotor;
+//import com.qualcomm.robotcore.hardware.DcMotorEx;
+//import com.qualcomm.robotcore.hardware.Servo;
+//import com.qualcomm.robotcore.hardware.HardwareMap;
+
 package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
+import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.hardware.IMU;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Turret {
-//    private DcMotorEx turretMotor;
+  private DcMotor flyWheel;
+  private Servo turretServo;
+  public Turret (){
+      flyWheel = hardwareMap.get(DcMotor , "fly");
+      turretServo = hardwareMap.get(DcMotor , "fly");
+  }
 //    private final double P_GAIN = 0.005;
 //    private final double TICKS_PER_DEGREE = 28.0;
 //    private final double MAX_TICKS = 2000;
