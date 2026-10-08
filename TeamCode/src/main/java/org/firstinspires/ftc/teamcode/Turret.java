@@ -12,14 +12,23 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class Turret {
-  private DcMotor flyWheel;
-  private Servo turretServo;
+    private DcMotor flyWheel;
+    private Servo turretServo;
+
+    public void init() {
+
+    flyWheel =hardwareMap.get(DcMotor .class,"fly");
+    turretServo =hardwareMap.get(Servo .class,"adjuster");
+}
   public Turret (){
-      flyWheel = hardwareMap.get(DcMotor.class, "fly");
-      turretServo = hardwareMap.get(Servo.class, "adjuster");
+
   }
 
   public void wheelChange (){
+      flyWheel.setPower();
+  }
+
+  public void setTargetTurn (){
 
   }
 
