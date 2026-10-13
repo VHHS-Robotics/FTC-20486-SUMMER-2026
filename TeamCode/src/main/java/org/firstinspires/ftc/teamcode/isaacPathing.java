@@ -63,7 +63,6 @@ public class isaacPathing extends OpMode {
                     )
                     .setConstantHeadingInterpolation(Math.toRadians(180))
                     .build();
-
             FirstLine = follower.pathBuilder()
                     .addPath(
                             new BezierLine(
