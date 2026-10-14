@@ -1,8 +1,26 @@
-import com.pedropathing.api.PoseFactory;
-import com.pedropathing.math.Pose;
-import com.pedropathing.paths.Path;
+import android.os.Build;
+package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.bylazar.configurables.annotations.Configurable;
+import com.bylazar.telemetry.PanelsTelemetry;
+import com.bylazar.telemetry.TelemetryManager;
+import com.pedropathing.follower.Follower;
+import com.pedropathing.geometry.BezierLine;
+import com.pedropathing.geometry.Pose;
+import com.pedropathing.paths.PathChain;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+
+import org.firstinspires.ftc.teamcode.ExampleOpModes.ExampleAuto;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
-public class Shoot extends OpMode{
+ import com.pedropathing.paths.PathBuilder;
+
+import java.nio.file.Paths;
+import java.nio.file.Paths;
+
+public class Shoot extends OpMode {
     private TelemetryManager panelsTelemetry; // Panels Telemetry instance
     public Follower follower; // Pedro Pathing follower instance
     private int pathState = 0; // Current autonomous path state (state machine)
@@ -12,8 +30,9 @@ public class Shoot extends OpMode{
         panelsTelemetry = PanelsTelemetry.INSTANCE.getTelemetry();
 
         follower = Constants.createFollower(hardwareMap);
-       follower.setStartingPose(56.3986, 5.8077, 90);
-        paths = new Paths(follower);
+       follower.setStartingPose(new Pose(56.3986, 5.8077, Math.toRadians(90)));
+            paths = new Shoot.Paths(follower);
+        }
 
         public void loop() {
             follower.update(); // Update Pedro Pathing
@@ -37,10 +56,10 @@ public class Shoot extends OpMode{
             public Paths(Follower follower) {
                 Start = follower.pathBuilder()
                         .addPath(
-                                new BeizerLine(
-                                        new Pose(56.3986, 5.8077, 90)
-                                        new Pose(56.9261, 6.1197, 30.6024)
-                                        new Pose(56.5979, 31.2169, 90.7492)
+                                new BezierLine(
+                                        new Pose(56.3986, 5.8077, 90),
+                                        new Pose(56.9261, 6.1197, 30.6024),
+                                        new Pose(56.5979, 31.2169, 90.7492))
                                 )
                 )
                 setConstantHeadingInterpolation(Math.toRadians(180))
@@ -49,7 +68,7 @@ public class Shoot extends OpMode{
                 FirstLine = follower.pathBuilder()
                         .addPath(
                                 new BezierLine(
-                                        new Pose(35.0761, 39.4979, 158.9546)
+                                        new Pose(35.0761, 39.4979, 158.9546),
                                         new Pose(36.2873, 122.0408, 89.1593)
                     )
                 )
@@ -58,7 +77,7 @@ public class Shoot extends OpMode{
                 SecondLine = follower.pathBuilder()
                         .addPath(
                                 new BeizerLine(
-                                        new Pose(52.3789, 106.7232, -43.5885)
+                                        new Pose(52.3789, 106.7232, -43.5885),
                                         new Pose(52.8606, 130.0338, 88.8162)
                                 )
                 )
@@ -67,7 +86,7 @@ public class Shoot extends OpMode{
                 ThirdLine = follower.pathBuilder()
                         .addPath(
                                 new BeizerLine(
-                                        new Pose(21.6683, 90.8627, -128.5306)
+                                        new Pose(21.6683, 90.8627, -128.5306),
                                         new Pose(27.543, 24.6169, -84.9323)
                                 )
                         )
@@ -76,7 +95,7 @@ public class Shoot extends OpMode{
                 End = follower.pathBuilder()
                         .addpath(
                                 new BeizerLine(
-                                       new Pose(17.2359, 13.3542, -132.4632)
+                                       new Pose(17.2359, 13.3542, -132.4632),
                                        new Pose(8.8761, 107.4077, 95.0793)
                                 )
                         )
